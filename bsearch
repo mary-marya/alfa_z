@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <math.h>
+#include<stdlib.h>
+#include <iostream>
+
+void bubbleSort(int a[], int n) {
+	int i = 0, j = 0, tmp;
+	for (i = 0; i < n; i++) {   // loop n times - 1 per element
+		for (j = 0; j < n - i - 1; j++) { // last i elements are sorted already            
+			if (a[j] < a[j + 1]) {  // swop if order is broken
+				tmp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = tmp;
+			}
+		}
+	}
+}
+
+int bsearch(int a[], int x, int n) {
+	int m = 0;
+	for (int i = 0; i < n; i++) {
+		if (a[i] < x) {
+			m = i;
+			break;
+		}
+	}
+	return m;
+}
+
+int main() {
+	int i, x, count, number[25];
+	printf("How many elements are u going to enter?: ");
+	scanf_s("%d", &count);
+
+	printf("Enter %d elements: ", count);
+	for (i = 0; i < count; i++)
+		scanf_s("%d", &number[i]);
+
+	bubbleSort(number, count);
+	printf("Order of Sorted elements Bubble sort: ");
+	for (i = 0; i < count; i++)
+		printf(" %d", number[i]);
+
+	printf("\nInput x: ");
+	scanf_s("%d", &x);
+
+	if (number[count - 1] >= x) {
+		printf("\nThere is no needed element\n");
+	}
+	else
+	printf ("\nIndex of element, that is less than x: %d\n",bsearch(number, x, count));
+
+	system("pause");
+}
